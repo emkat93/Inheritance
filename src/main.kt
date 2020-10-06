@@ -15,15 +15,19 @@
  * added person2.calculate
  * added person3.printAll
  * added person2.calculate
+ * date: 10/6/20
+ * @param commercialProperty was added
+ * @param residentialProperty was added
+ * commercialProperty.printAll() was added
+ * commercialProperty.calculate(squareFootage) was added
+ * residentialProperty.printAll() was added
+ * residentialProperty.calculate(squareFootage) was added
+ * Removed person1, person2, and person3 parameters
  */
 
 fun main(){
     var isexit = true
     var userAns = 0
-
-    var person1 = Customer("", "", "", 0.00)
-    var person2 = Commercial("", true, "", "", "", 0.00)
-    var person3 = Residential(true, "", "", "", 0.00)
 
     do {
         println("1. Commercial")
@@ -47,6 +51,9 @@ fun main(){
                 println("Do you have a multiple properties? (Answer true or false)")
                 var multiProperty = readLine()!!.toBoolean()
                 isexit = false
+                var commercialProperty = Commercial(propertyName, multiProperty, customerName, customerNumber, customerAddress, squareFootage)
+                commercialProperty.printAll()
+                commercialProperty.calculate(squareFootage)
             }
             2 -> {
                 println("What is your full name?")
@@ -58,16 +65,15 @@ fun main(){
                 println("What is the square footage of your property?")
                 var squareFootage = readLine()!!.toDouble()
                 println("Are you a senior? (Answer true or false)")
-                var multiProperty = readLine()!!.toBoolean()
+                var senior = readLine()!!.toBoolean()
                 isexit = false
+                var residentialProperty = Residential(senior, customerName, customerAddress, customerNumber, squareFootage)
+                residentialProperty.printAll()
+                residentialProperty.calculate2(squareFootage)
             }
         }
 
     }while (isexit)
 
-    person2.printAll()
-    person2.calculate()
-    person3.printAll()
-    person3.calculate2()
 
 }
